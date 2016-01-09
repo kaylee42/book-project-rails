@@ -1,0 +1,14 @@
+<%= link_to "Home", home_index_path %> &nbsp;&nbsp;&nbsp;
+    Browse by:&nbsp;
+<%= link_to "Books", books_path %>&nbsp;&nbsp;
+<%= link_to "Authors", authors_path %>&nbsp;&nbsp;
+<%= link_to "Genres", genres_path %>&nbsp;&nbsp;
+<%= link_to "Users", users_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<% if logged_in? %>
+YOUR ACCOUNT
+LOG OUT
+<% else %>
+SIGN UP
+LOG IN
+<% end %>
