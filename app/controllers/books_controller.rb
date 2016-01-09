@@ -21,7 +21,7 @@ class BooksController < ApplicationController
     elsif books.length != 0
       @books = books.sort_by {|book| book.author.name}
     else
-      @books = Search.for(search_term).sort_by {|book| [book.name, book.author.name]}
+      @books = Search.for(s_type: Book, name: search_term).sort_by {|book| [book.name, book.author.name]}
     end
   end
 end

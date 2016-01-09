@@ -1,12 +1,9 @@
 <h1>Books</h1>
 
 <%= form_tag("books/search", method: "get") do %>
-
   <%= label_tag(:keyword, "Search Titles:") %>
   <%= text_field_tag(:keyword) %>
   <%= submit_tag("Search") %>
-
-
 <% end %>
 
 
