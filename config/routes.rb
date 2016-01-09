@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root "home#index"
+  get "books/search", to: "books#search"
 
   resources :genres, only: [:index, :show]
   resources :authors, only: [:index, :show]

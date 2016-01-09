@@ -1,2 +1,7 @@
-<h1>Books#search</h1>
-<p>Find me in app/views/books/search.html.erb</p>
+<h1>Did you mean...?</h1>
+
+<ul>
+  <% @books.each do |book| %>
+    <li><%= link_to book.name, book %> by <%=link_to book.author.name, book.author%>, <%=link_to book.genre.name, book.genre%></li>
+  <% end %>
+</ul>
