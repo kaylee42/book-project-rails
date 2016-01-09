@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  root "home#index"
+
+  resources :genres, only: [:index, :show]
+  resources :authors, only: [:index, :show]
+  resources :users
+  resources :books, only: [:index, :show, :new, :create]
+  resources :ratings, only: [:new, :create, :edit, :update, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
