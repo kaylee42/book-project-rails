@@ -2,7 +2,7 @@
 
 <h2>All Books by <%=@author.name%></h2>
 <ul>
-  <% @author.books.sort_by do |book| [book.name, book.genre] end.each do |book| %>
+  <% @author.books.sort_by do |book| book.name end.each do |book| %>
     <li><%=link_to book.name, book%> - <%= link_to book.genre.name, book.genre %> - <strong>Average Rating: <%=book.average_rating%>/10</strong></li>
   <% end %>
 </ul>
