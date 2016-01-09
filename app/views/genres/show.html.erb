@@ -1,2 +1,8 @@
-<h1>Genres#show</h1>
-<p>Find me in app/views/genres/show.html.erb</p>
+<h1><%=@genre.name%></h1>
+
+<h2>All Books in <%=@genre.name%></h2>
+<ul>
+  <% @genre.books.sort_by do |book| [book.name, book.author] end.each do |book| %>
+  <li><%=link_to book.name, book%> - <%= link_to book.author.name, book.author %> - <strong>Average Rating: <%=book.ratings.average(:amount).to_f.round(2)%>/10</strong></li>
+  <% end %>
+</ul>
