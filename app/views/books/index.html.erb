@@ -8,3 +8,11 @@
 
 
 <% end %>
+
+
+<h3>Browse All:</h3>
+<ul>
+  <% @books.each do |book| %>
+  <li><%=link_to book.name, book%> by <%= link_to book.author.name, book.author %>, <%= link_to book.genre.name, book.genre %> - <strong>Average Rating: <%= book.average_rating %></strong></li>
+  <% end %>
+</ul>
