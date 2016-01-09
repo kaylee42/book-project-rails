@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates_presence_of :name, :username, :password_confirmation
-  validates_uniqueness_of :username
+  validates :username, uniqueness: {case_sensitive: false}
 end
