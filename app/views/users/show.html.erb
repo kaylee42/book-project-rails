@@ -2,8 +2,10 @@
 <h1>Welcome, <%= current_user.name %>!</h1>
 <%= flash[:update] if flash[:update] %><br>
 <%= link_to "Edit Profile", edit_user_path(@user) %><br>
+<%= link_to "Delete Account", user_path(@user), method: "delete", data: {confirm: "Are you sure you want to delete your account? This action cannot be reversed!!!"} %><br>
 <%= link_to "Rate a new book!", new_rating_path %>
 <% else %>
+
 
 <h1><%=@user.name%>, (<%= @user.username %>)</h1>
 
@@ -18,4 +20,5 @@
   <strong>Your bio is blank! Why don't you <%= link_to "add something to it?!", edit_user_path%></strong>
   <% end %>
 <% end %>
+
 <h2>Top Rated </h2>
