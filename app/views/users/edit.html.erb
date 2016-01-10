@@ -1,5 +1,9 @@
 <h1>Edit Profile for <%= @user.username %></h1>
 
+<% if @user.errors.any? %>
+Whoops! <%= @user.errors.full_messages.first %>
+<% end %>
+
 <h3>Update Name and/or Bio:</h3>
 <%= form_for @user do |f| %>
 <%= f.label :name %>
