@@ -6,7 +6,7 @@
 <%= link_to "Users", users_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <% if logged_in? %>
-YOUR ACCOUNT
+<%= link_to "Your Account", current_user %>&nbsp;&nbsp;
 <%= link_to "Log Out", users_logout_path %>
 <% else %>
 <%= link_to "Sign Up", new_user_path %> &nbsp;&nbsp;

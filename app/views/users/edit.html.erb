@@ -1,2 +1,19 @@
-<h1>User#edit</h1>
-<p>Find me in app/views/user/edit.html.erb</p>
+<h1>Edit Profile for <%= @user.username %></h1>
+
+<h3>Update Name and/or Bio:</h3>
+<%= form_for @user do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+<%= f.label :bio %>
+<%= f.text_area :bio %><br>
+<%= f.submit "Update!" %>
+<% end %>
+
+<h3>Change Password:</h3>
+<%= form_for @user do |f| %>
+<%= f.label :password %>
+<%= f.password_field :password %><br>
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %><br>
+<%= f.submit "Change Password" %>
+<% end %>

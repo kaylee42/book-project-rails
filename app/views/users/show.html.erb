@@ -1,2 +1,21 @@
-<h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
+<% if current_user == @user %>
+<h1>Welcome, <%= current_user.name %>!</h1>
+<%= flash[:update] if flash[:update] %><br>
+<%= link_to "Edit Profile", edit_user_path(@user) %><br>
+<%= link_to "Rate a new book!", new_rating_path %>
+<% else %>
+
+<h1><%=@user.name%>, (<%= @user.username %>)</h1>
+
+<% end %>
+<% if @user.bio && @user.bio != "" %>
+<h2>Bio:</h2>
+<%= @user.bio %>
+
+<% else %>
+  <% if current_user == @user %>
+  <br><br>
+  <strong>Your bio is blank! Why don't you <%= link_to "add something to it?!", edit_user_path%></strong>
+  <% end %>
+<% end %>
+<h2>Top Rated </h2>

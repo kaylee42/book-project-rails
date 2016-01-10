@@ -21,9 +21,19 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to @user
+    end
   end
 
   def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    if params[:user][:password]
+      flash[:update] = "Password successfully changed!"
+    end
+    redirect_to @user
   end
 
   def destroy
@@ -52,7 +62,7 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:name, :username, :password, :password_confirmation)
+    params.require(:user).permit(:name, :username, :password, :password_confirmation, :bio)
   end
 
 

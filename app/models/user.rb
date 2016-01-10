@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
   has_many :friends, through: :frienships
 
   has_secure_password
-  validates_presence_of :name, :username, :password_confirmation
+  validates_presence_of :name, :username
   validates :username, uniqueness: {case_sensitive: false}
 end
