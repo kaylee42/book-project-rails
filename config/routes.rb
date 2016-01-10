@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root "home#index"
   get "books/search", to: "books#search"
   get "authors/search", to: "authors#search"
+  get "users/login", to: "users#login"
+  post "users/login", to: "users#logging"
 
   resources :genres, only: [:index, :show]
   resources :authors, only: [:index, :show]

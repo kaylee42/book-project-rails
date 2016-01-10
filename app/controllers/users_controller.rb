@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user
     else
       render "new"
@@ -26,6 +27,21 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def login
+    @user = User.new
+  end
+
+  def logging
+    @user = User.find_by(username: params[:user][:username])
+    if @user && @user.authenticate(params[:user][:password])
+      session[:user_id] = @user.id
+      redirect_to @user
+    else
+      flash[:error] = "Something went wrong! Please check your username and password and try again."
+      redirect_to users_login_path
+    end
   end
 
 private
