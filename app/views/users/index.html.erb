@@ -1,5 +1,7 @@
 <h1>Users</h1>
 
+<%= notice %>
+
 <%= form_tag("users/search", method: "get") do %>
   <%= label_tag(:keyword, "Search Users by Name or Username:") %>
   <%= text_field_tag(:keyword) %>

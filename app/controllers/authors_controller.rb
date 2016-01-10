@@ -14,6 +14,9 @@ class AuthorsController < ApplicationController
       redirect_to authors.first
     else
       @authors = Search.for(s_type: Author, name: search_term).sort_by {|author| author.name}
+      if @authors == []
+        redirect_to authors_path, notice: "Sorry, couldn't find what you were looking for! Please try again."
+      end
     end
   end
 end

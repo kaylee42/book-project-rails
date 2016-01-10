@@ -50,6 +50,9 @@ class UsersController < ApplicationController
       redirect_to user
     else
       @users = Search.users(search_term).sort_by {|user| user.username}
+        if @users == []
+          redirect_to users_path, notice: "Sorry, couldn't find what you were looking for! Please try again."
+        end
     end
   end
 

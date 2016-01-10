@@ -22,6 +22,9 @@ class BooksController < ApplicationController
       @books = books.sort_by {|book| book.author.name}
     else
       @books = Search.for(s_type: Book, name: search_term).sort_by {|book| [book.name, book.author.name]}
+      if @books == []
+        redirect_to books_path, notice: "Sorry, couldn't find what you were looking for! Please try again."
+      end
     end
   end
 end
