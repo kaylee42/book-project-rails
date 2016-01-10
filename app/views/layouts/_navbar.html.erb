@@ -7,7 +7,7 @@
 
 <% if logged_in? %>
 YOUR ACCOUNT
-LOG OUT
+<%= link_to "Log Out", users_logout_path %>
 <% else %>
 <%= link_to "Sign Up", new_user_path %> &nbsp;&nbsp;
 <%= link_to "Log In", users_login_path %>
