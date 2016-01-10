@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    @users = User.all.sort_by {|user| user.username.downcase}
   end
 
   def new
@@ -43,6 +44,15 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    search_term = params[:keyword]
+    if user = User.find_by(username: search_term)
+      redirect_to user
+    else
+      @users = Search.users(search_term).sort_by {|user| user.username}
+    end
+  end
+
   def login
     @user = User.new
   end
@@ -60,7 +70,7 @@ class UsersController < ApplicationController
 
   def logout
     session[:user_id] = nil
-    redirect_to root_path
+    redirect_to root_path, notice: "You have been successfully logged out."
   end
 
 private

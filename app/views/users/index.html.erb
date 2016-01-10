@@ -1,2 +1,15 @@
-<h1>User#index</h1>
-<p>Find me in app/views/user/index.html.erb</p>
+<h1>Users</h1>
+
+<%= form_tag("users/search", method: "get") do %>
+  <%= label_tag(:keyword, "Search Users by Name or Username:") %>
+  <%= text_field_tag(:keyword) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+<h3>Browse all:</h3>
+<ul>
+  <% @users.each do |user| %>
+  <li><%=link_to user.username, user %></li>
+  <% end %>
+</ul>

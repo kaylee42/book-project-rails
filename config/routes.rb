@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "users/login", to: "users#login"
   post "users/login", to: "users#logging"
   get "users/logout", to: "users#logout"
+  get "users/search", to: "users#search"
 
   resources :genres, only: [:index, :show]
   resources :authors, only: [:index, :show]
