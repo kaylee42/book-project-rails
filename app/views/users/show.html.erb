@@ -9,7 +9,16 @@
 
 
 <h1><%=@user.name%> (<%= @user.username %>)</h1>
-
+<%= notice %>
+  <% if current_user.friends.include? @user %>
+    <%= form_tag "/friends/#{@user.id}/remove", method: "post" do %>
+    <%= submit_tag "Remove Friend" %>
+    <% end %>
+  <% else %>
+    <%= form_tag "/friends/#{@user.id}/add", method: "post" do %>
+    <%= submit_tag "Add Friend" %>
+    <% end %>
+  <% end %>
 <% end %>
 <% if @user.bio && @user.bio != "" %>
 <h2>Bio:</h2>
@@ -35,3 +44,12 @@
   <li><em><%=link_to rating.book.name, rating.book%></em> by <%=link_to rating.author.name, rating.author%> - <strong><%=current_user == @user ? (link_to rating.amount, edit_rating_path(rating)) : rating.amount%></strong></li>
   <% end %>
 </ul>
+
+<% if @user.friends != []%>
+<h3>Friends</h3>
+  <ul>
+    <% @user.friends.sort_by do |friend| friend.username end.each do |friend| %>
+      <li><%=link_to friend.username, friend%></li>
+    <% end %>
+  </ul>
+<% end %>
