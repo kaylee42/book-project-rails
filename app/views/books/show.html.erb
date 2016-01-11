@@ -6,7 +6,7 @@
 
 <h2>Average Rating: <%=@book.average_rating%></h2>
 
-<%= notice %>
+<%= notice %><br>
 <% if logged_in? %>
   <% if current_user.books.include? @book %>
   <% rating = @book.ratings.find_by(user_id: current_user.id) %>

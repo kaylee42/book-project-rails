@@ -1,2 +1,29 @@
-<h1>Books#new</h1>
-<p>Find me in app/views/books/new.html.erb</p>
+<h1>New Book</h1>
+
+<%= form_for @book do |f| %>
+  <%= f.label :name, "Title" %>
+  <%= f.text_field :name %><br>
+  <%= f.fields_for :authors do |authors_form| %>
+    <%= authors_form.label :name, "Author" %>
+    <%= authors_form.text_field :name, list: "authors" %>
+    <datalist id="authors">
+      <% Author.all.each do |author| %>
+      <option value="<%=author.name%>">
+    <% end %>
+    </datalist>
+  <% end %><br>
+
+  <%= f.fields_for :genres do |genres_form| %>
+    <%= genres_form.label :name, "Genre" %>
+    <%= genres_form.text_field :name, list: "genres" %>
+    <datalist id="genres">
+      <% Genre.all.each do |genre| %>
+      <option value="<%=genre.name%>">
+    <% end %>
+    </datalist>
+  <% end %><br>
+
+<%= f.submit "Create New Book", data: {confirm: "Please double-check book info! A book cannot be edited after creation."} %>
+
+
+<% end %>

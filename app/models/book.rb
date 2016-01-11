@@ -4,7 +4,7 @@ class Book < ActiveRecord::Base
   has_many :ratings
   has_many :users, through: :ratings
 
-  validates_presence_of :name, :author_id
+  validates_presence_of :name, :author_id, :genre_id
   validates :name, uniqueness: {scope: :author_id, case_sensitive: false}
   def average_rating
     self.ratings.average(:amount).to_f.round(2)
