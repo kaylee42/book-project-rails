@@ -1,8 +1,5 @@
-10.times {Genre.create(name: Faker::Book.genre)}
+users = User.all.map {|a| a.id}
+books = Book.all.map {|g| g.id}
+amount = [1,2,3,4,5,3,4,5,6,7,8,9,7,8,10]
 
-20.times {Author.create(name: Faker::Book.author)}
-
-authors = Author.all.map {|a| a.id}
-genres = Genre.all.map {|g| g.id}
-
-100.times {Book.create(name: Faker::Book.title, author_id: authors.sample, genre_id: genres.sample)}
+300.times {Rating.create(amount: amount.sample, user_id: users.sample, book_id: books.sample) }

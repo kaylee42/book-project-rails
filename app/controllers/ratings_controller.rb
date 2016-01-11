@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.new(amount: params[:rating], user_id: current_user.id, book_id: params[:book_id])
     @rating.save
-    redirect_to Book.find(params[:book_id])
+    redirect_to Book.find(params[:book_id]), notice: "Rating successful!"
   end
 
   def edit
