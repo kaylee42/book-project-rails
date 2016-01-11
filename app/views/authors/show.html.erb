@@ -1,8 +1,9 @@
 <h1><%=@author.name%></h1>
 
-<h2>All Books by <%=@author.name%></h2>
-<ul>
-  <% @author.books.sort_by do |book| book.name end.each do |book| %>
-    <li><%=link_to book.name, book%> - <%= link_to book.genre.name, book.genre %> - <strong>Average Rating: <%=book.average_rating%>/10</strong></li>
+<h2>Top Rated</h2>
+<ol>
+  <% books = @author.books.sort_by {|book| [-(Rating.where(book_id: book.id).average(:amount) || 0), book.name] } %>
+  <% books.each do |book| %>
+    <li><em><%=link_to book.name, book%></em> - <%= link_to book.genre.name, book.genre %> - <strong>Average Rating: <%=book.average_rating%>/10</strong></li>
   <% end %>
-</ul>
+</ol>

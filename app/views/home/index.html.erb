@@ -1,6 +1,20 @@
 <h1>Books for Nerds</h1>
 <%= notice %>
 
-<h2>Top Rated:</h2>
-
 <h2>Recently Rated:</h2>
+
+<ul>
+<% Rating.all.order('updated_at DESC').limit(10).each do |rating| %>
+
+  <li><em><%= link_to rating.book.name, rating.book %></a></em> by <%=link_to rating.author.name, rating.author%></a> - <strong>Rated <%=rating.amount%></strong> by <%= link_to rating.user.username, rating.user%></li>
+  <% end %>
+</ul>
+
+<h2>Top 100:</h2>
+<ol>
+<% Rating.select("id, book_id, avg(amount) as average").group("book_id").order("average DESC").limit(100).each do |rating| %>
+
+<li><em><%= link_to rating.book.name, rating.book %></a></em> by <%=link_to rating.author.name, rating.author%> - <strong>Rated <%=rating.average.round(2)%>/10</strong></li>
+
+<% end %>
+</ol>

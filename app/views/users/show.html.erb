@@ -8,7 +8,7 @@
 <% else %>
 
 
-<h1><%=@user.name%>, (<%= @user.username %>)</h1>
+<h1><%=@user.name%> (<%= @user.username %>)</h1>
 
 <% end %>
 <% if @user.bio && @user.bio != "" %>
@@ -22,4 +22,16 @@
   <% end %>
 <% end %>
 
-<h2>Top Rated </h2>
+<h3>Recently Rated</h3>
+<ul>
+      <%@user.ratings.order('updated_at DESC').limit(5).each do |rating| %>
+      <li><em><%=link_to rating.book.name, rating.book%></em> by <%=link_to rating.author.name, rating.author%> - <strong><%=current_user == @user ? (link_to rating.amount, edit_rating_path(rating)) : rating.amount%></strong></li>
+      <% end %>
+    </ul>
+
+<h3>Top Rated </h3>
+<ul>
+  <%@user.ratings.order('amount DESC, updated_at DESC').each do |rating| %>
+  <li><em><%=link_to rating.book.name, rating.book%></em> by <%=link_to rating.author.name, rating.author%> - <strong><%=current_user == @user ? (link_to rating.amount, edit_rating_path(rating)) : rating.amount%></strong></li>
+  <% end %>
+</ul>
