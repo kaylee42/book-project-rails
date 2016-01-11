@@ -5,3 +5,22 @@
 <h2>Genre: <%=link_to @book.genre.name, @book.genre%></h2>
 
 <h2>Average Rating: <%=@book.average_rating%></h2>
+
+
+<% if logged_in? %>
+  <% if current_user.books.include? @book %>
+  <% rating = @book.ratings.find_by(user_id: current_user.id) %>
+    <strong>Your Rating: <%= link_to rating.amount, edit_rating_path(rating) %> </strong>
+
+    <% else %>
+      Rate this book:
+      <%= form_tag(ratings_path, method: "post") do  %>
+        <%= hidden_field_tag :book_id, @book.id %>
+        <%= select_tag :rating, options_for_select(1..10) %>
+        <%= submit_tag "Rate!" %>
+      <% end %>
+    <% end %>
+
+<% else %>
+<%= link_to "SIGN UP", new_user_path %> or <%= link_to "LOG IN", users_login_path %> to rate this book!
+<% end %>

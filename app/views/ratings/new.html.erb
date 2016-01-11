@@ -1,0 +1,7 @@
+<h1>New Rating</h1>
+
+<%= form_tag("typeahead/:query", method: "get") do %>
+  <%= label_tag("typeahead", "Search Books:") %>
+  <%= text_field_tag "typeahead" %>
+  <%= submit_tag("Search") %>
+<% end %>
