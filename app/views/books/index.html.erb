@@ -2,7 +2,12 @@
 <%= notice %>
 <%= form_tag("books/search", method: "get") do %>
   <%= label_tag(:keyword, "Search Titles:") %>
-  <%= text_field_tag(:keyword) %>
+  <%= text_field_tag(:keyword, nil, list: "titles", size: "35") %>
+    <datalist id="titles">
+      <% Book.all.map do |book| book.name end.uniq.each do |book| %>
+        <option value="<%=book%>">
+          <% end %>
+    </datalist>
   <%= submit_tag("Search") %>
 <% end %>
 
