@@ -61,6 +61,7 @@ class UsersController < ApplicationController
   end
 
   def login
+    session[:return_to] = request.referer
     @user = User.new
   end
 
@@ -68,7 +69,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to session.delete(:return_to)
     else
       flash[:error] = "Something went wrong! Please check your username and password and try again."
       redirect_to users_login_path
