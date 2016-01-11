@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post "users/login", to: "users#logging"
   get "users/logout", to: "users#logout"
   get "users/search", to: "users#search"
-  get 'typeahead/:query' => 'ratings#typeahead'
+  
 
   resources :genres, only: [:index, :show]
   resources :authors, only: [:index, :show]

@@ -10,7 +10,8 @@
 <% if logged_in? %>
   <% if current_user.books.include? @book %>
   <% rating = @book.ratings.find_by(user_id: current_user.id) %>
-    <strong>Your Rating: <%= link_to rating.amount, edit_rating_path(rating) %> </strong>
+    <strong>Your Rating: <%= link_to rating.amount, edit_rating_path(rating) %> </strong><br>
+    <%= link_to "Delete Rating", rating_path(rating), method: "delete", data: {confirm: "Are you sure you want to delete this rating?"} %><br>
 
     <% else %>
       Rate this book:

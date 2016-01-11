@@ -1,2 +1,8 @@
-<h1>Ratings#edit</h1>
-<p>Find me in app/views/ratings/edit.html.erb</p>
+<h1>Edit Rating</h1>
+
+<h3><%=@rating.book.name%></h3>
+<h4>By <%=@rating.author.name%></h4>
+<%= form_for @rating do |f| %>
+  <%= f.select :amount, ((1..10).map {|i| [i,i]}) %>
+  <%= f.submit %>
+<% end %>

@@ -10,12 +10,19 @@ class RatingsController < ApplicationController
   end
 
   def edit
+    @rating = Rating.find(params[:id])
   end
 
   def update
+    @rating = Rating.find(params[:id])
+    @rating.update(amount: params[:rating][:amount])
+    redirect_to @rating.book
   end
 
   def destroy
+    @rating = Rating.find(params[:id])
+    @rating.destroy
+    redirect_to books_path, notice: "Rating successfully deleted."
   end
 
 end
