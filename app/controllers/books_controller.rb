@@ -12,6 +12,14 @@ class BooksController < ApplicationController
   end
 
   def create
+    author = Author.find_or_create_by(name: params[:book][:authors][:name])
+    genre = Genre.find_or_create_by(name: params[:book][:genres][:name])
+    @book = Book.new(name: params[:book][:name], genre_id: genre.id, author_id: author.id)
+    if @book.save
+      redirect_to @book, notice: "Book successfully created!"
+    else
+      render :new
+    end
   end
 
   def search
@@ -28,4 +36,6 @@ class BooksController < ApplicationController
       end
     end
   end
+
+
 end

@@ -1,5 +1,14 @@
 <h1>New Book</h1>
 
+<% if @book.errors.any? %>
+Whoops! Looks like <%= pluralize(@book.errors.count, "error") %> prevented this book from saving:
+<% @book.errors.full_messages.each do |message| %>
+  <ul>
+    <li><%= message %></li>
+  </ul>
+<% end %>
+<% end %>
+
 <%= form_for @book do |f| %>
   <%= f.label :name, "Title" %>
   <%= f.text_field :name %><br>
@@ -21,7 +30,7 @@
       <option value="<%=genre.name%>">
     <% end %>
     </datalist>
-  <% end %><br>
+  <% end %><br><br>
 
 <%= f.submit "Create New Book", data: {confirm: "Please double-check book info! A book cannot be edited after creation."} %>
 

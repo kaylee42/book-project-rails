@@ -2,9 +2,10 @@
 
 <h1>Welcome, <%= current_user.name %>!</h1>
 <%= notice %><br>
+<%= link_to "Rate a new book!", books_path %><br>
 <%= link_to "Edit Profile", edit_user_path(@user) %><br>
 <%= link_to "Delete Account", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to delete your account? This action cannot be reversed!!!"} %><br>
-<%= link_to "Rate a new book!", books_path %>
+
 <% else %>
 
 
