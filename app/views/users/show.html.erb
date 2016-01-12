@@ -56,3 +56,11 @@
     <% end %>
   </ul>
 <% end %>
+<% if @user.followers != []%>
+<h3>Followers</h3>
+  <ul>
+    <% @user.followers.sort_by do |follower| follower.username end.each do |follower| %>
+      <li><%=link_to follower.username, follower%></li>
+    <% end %>
+  </ul>
+<% end %>
