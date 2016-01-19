@@ -47,3 +47,7 @@ group :development do
   gem 'faker'
   gem 'pry-rails'
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+end

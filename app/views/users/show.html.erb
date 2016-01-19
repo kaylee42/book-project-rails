@@ -51,8 +51,8 @@
 <% if @user.friends != []%>
 <h3>Friends</h3>
   <ul>
-    <% @user.friends.sort_by do |friend| friend.username end.each do |friend| %>
-      <li><%=link_to friend.username, friend%></li>
+    <% @user.friends.sort_by do |friend|friend.username end.each do |friend| %>
+      <li><%=link_to friend.username, friend %></li>
     <% end %>
   </ul>
 <% end %>
