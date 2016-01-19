@@ -1,17 +1,18 @@
 class User < ActiveRecord::Base
   has_many :ratings
   has_many :books, through: :ratings
-  has_many :frienships
-  has_many :friends, through: :frienships
+  has_many :friendships
+  has_many :friends, through: :friendships
 
-  has_many :inverse_friendship, class_name: "Frienship", foreign_key: "friend_id"
-  has_many :followers, through: :inverse_friendship, source: :user
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   has_secure_password
   validates_presence_of :name, :username
   validates :username, uniqueness: {case_sensitive: false}
 
   def mutual_friends
-    friends + followers
+    friends + inverse_friends
   end
+
 end
