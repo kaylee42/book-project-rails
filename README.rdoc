@@ -1,28 +1,7 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Books for Nerds is a social Rails app for rating and recommending books. 
 
-Things you may want to cover:
+It's built in Ruby 2.2.3, and the Gemfile includes all necessary dependencies! Feel free to fork and experiment as much as you'd like. The program includes a database set-up and mulitple model associations, including the relationship that allows for friendships, and are easily customizable to operate in either the Facebook or Twitter model. 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Please reach out with any questions or feedback. 
